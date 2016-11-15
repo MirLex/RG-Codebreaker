@@ -1,5 +1,2 @@
-require "Codebreaker_ML/version"
-
-module CodebreakerML
-  # Your code goes here...
-end
+require 'Codebreaker_ML/version'
+require 'classes/game'
