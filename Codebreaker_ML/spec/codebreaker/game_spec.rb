@@ -18,15 +18,10 @@ module Codebreaker
       end
       it 'saves secret code with numbers from 1 to 6' do
         # expect(game.instance_variable_get(:@secret_code)).to match(/\A[1-6]+\z/)
-        # code = game.instance_variable_get(:@secret_code)
         expect(game.instance_variable_get(:@secret_code)).to match(/[1-6]{4}/)
-        # # expect(game.instance_variable_get(:@secret_code)).to  all(match(/[1-6]/))
-        # expect(game.instance_variable_get(:@secret_code)).to  all(be_a(Fixnum))
-        # expect(game.instance_variable_get(:@secret_code)).to  all(be_a(Fixnum).and match(/[1-6]/))
       end
       it 'should be different in each game' do
         outher_game = Game.new
-        # outher_game.start
         expect(game.instance_variable_get(:@secret_code)).not_to eq(outher_game.instance_variable_get(:@secret_code))
       end
     end
