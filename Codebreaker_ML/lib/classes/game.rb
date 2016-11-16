@@ -10,7 +10,7 @@ module Codebreaker
     def guess(guess_code)
       corr = (0...code_size).map { |i| @secret_code[i] == guess_code[i] ? 1 : 0 }.reduce(:+)
 
-      code = @secret_code.clone
+      code = @secret_code.clone # dup ?
       num_inc = (0...code_size).map do |i|
         if code.include?(guess_code[i])
           code[code.index(guess_code[i])] = 'N'
