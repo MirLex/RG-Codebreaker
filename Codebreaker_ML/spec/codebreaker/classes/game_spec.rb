@@ -46,8 +46,17 @@ module Codebreaker
       it 'makr guess'
     end
 
-    context '#win' do
-      it 'congratulate user'
+    context '#status' do
+      it 'lose if not guess for number of attempts' do
+        turns = game.instance_variable_get(:@number_of_turns)
+        turns.times{game.guess('1000')}
+        expect(game.status).to eq(:lose)
+      end
+      it 'win if code guessed' do
+        code = game.instance_variable_get(:@secret_code)
+        game.guess(code)
+        expect(game.status).to eq(:win)
+      end
       it 'offers to play again'
       it 'show history'
       it 'save progress'
