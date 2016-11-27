@@ -1,6 +1,19 @@
 module Codebreaker
   class Game
-    attr_reader :code_size
+    attr_reader :code_size, :guess_history
+    TEXT = {
+      rules:      'GAME RULES:',
+      make_guess: 'Make guess:',
+      incorect:   'Incorect input',
+      hint:       'Enter "hint" for request a hint',
+      quit:       'Enter "quit" to exit the game',
+      quit?:      'Enter "yes" to exit the game',
+      restart:    'Enter "restart" to start a new round',
+      restart?:   'Enter "yes" to play again',
+      win:        'Congratulations, you win the game',
+      lose:       'Sorry you lose',
+      save:       'Enter "yes" to save game history'
+    }.freeze
 
     def initialize(code_size = 4, number_of_turns = 15)
       @code_size = code_size
