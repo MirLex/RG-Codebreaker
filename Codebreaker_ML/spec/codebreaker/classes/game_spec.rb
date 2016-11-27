@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 module Codebreaker
   RSpec.describe Game do
@@ -20,9 +19,8 @@ module Codebreaker
         expect(game.instance_variable_get(:@secret_code)).not_to eq(outher_game.instance_variable_get(:@secret_code))
       end
     end
+
     context '#guess' do
-      it 'chomp user guess'
-      it 'check is digits'
       it 'check guess' do
         game.instance_variable_set(:@secret_code, '1234')
         expect(game.guess('1234')).to eq([4, 0])
@@ -43,13 +41,12 @@ module Codebreaker
         expect(game.guess('0101')).to eq([0, 2])
         expect(game.guess('2131')).to eq([0, 4])
       end
-      it 'makr guess'
     end
 
     context '#status' do
       it 'lose if not guess for number of attempts' do
         turns = game.instance_variable_get(:@number_of_turns)
-        turns.times{game.guess('1000')}
+        turns.times { game.guess('1000') }
         expect(game.status).to eq(:lose)
       end
       it 'win if code guessed' do
@@ -57,21 +54,17 @@ module Codebreaker
         game.guess(code)
         expect(game.status).to eq(:win)
       end
-      it 'offers to play again'
-      it 'show history'
-      it 'save progress'
     end
 
-    context 'lose' do
-      it 'offers to play again'
-      it 'show history'
-    end
-
-    context 'hint' do
+    context '#hint' do
       it 'show hint' do
-      hint = game.hint
-      expect(game.instance_variable_get(:@secret_code)).to include(hint)
+        hint = game.hint
+        expect(game.instance_variable_get(:@secret_code)).to include(hint)
       end
+    end
+
+    context '#save history' do
+      it 'save game history'
     end
   end
 end
