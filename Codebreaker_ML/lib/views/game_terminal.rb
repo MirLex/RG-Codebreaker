@@ -19,13 +19,13 @@ module Codebreaker
           mark_guess(@game.guess(answer))
           game_over(@game.status) unless @game.status.nil?
         else
-          text(:incorect)
+          text(:incorrect)
         end
       end
     end
 
     def text(message)
-       puts Codebreaker::Game::TEXT[message]
+      puts Codebreaker::Game::TEXT[message]
     end
 
     def action(answer)
@@ -46,7 +46,10 @@ module Codebreaker
 
     def save_history
       text(:save)
-      @game.save if gets.chomp == 'yes'
+      if gets.chomp == 'yes'
+        text(:initials)
+        puts 'Game history save to: ' + @game.save_history(gets.chomp)
+      end
     end
 
     def game_over(game_result)
@@ -62,11 +65,7 @@ module Codebreaker
     end
 
     def show_history
-      puts "Secret code was: #{@game.instance_variable_get(:@secret_code)}"
-      @game.guess_history.each_with_index do |guess, index|
-        print "attempt: #{index} "
-        puts "guess: #{guess} "
-      end
+      @game.show_history.each { |line| puts line }
     end
 
     def mark_guess(guess)
