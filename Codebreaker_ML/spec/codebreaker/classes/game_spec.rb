@@ -63,8 +63,17 @@ module Codebreaker
       end
     end
 
-    context '#save history' do
-      it 'save game history'
+    context '#show_history' do
+      it 'return game progress history' do
+        expect(game.show_history).not_to be_empty
+      end
+    end
+
+    context '#save_history' do
+      it 'save game progress history to file' do
+        game.save_history('UserName')
+        expect(File.file?('./game_history/UserName.yaml')).to be true
+      end
     end
   end
 end
