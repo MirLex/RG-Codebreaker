@@ -1,5 +1,5 @@
-require './lib/classes/game'
-require './lib/controllers/gameController'
+# require './lib/classes/game'
+# require './lib/controllers/gameController'
 
 module Codebreaker
   class GameTerminal
