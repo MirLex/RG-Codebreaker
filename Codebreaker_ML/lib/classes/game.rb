@@ -37,23 +37,18 @@ module Codebreaker
       @number_of_turns -= 1
       @guess_history << guess_code
 
-      corr = (0...code_size).map { |i| @secret_code[i] == guess_code[i] ? 1 : 0 }.reduce(:+)
+      corr = @secret_code.chars.zip(guess_code.chars).select { |code, guess| code == guess }.count
 
       code = @secret_code.clone
-      num_inc = (0...code_size).map do |i|
-        if code.include?(guess_code[i])
-          code[code.index(guess_code[i])] = 'N'
-          1
-        else
-          0
-        end
-      end.reduce(:+)
+      num_inc = guess_code.chars.map do |el|
+        code[code.index(el)] = 'N' if code.include?(el)
+      end.compact.size
 
       [corr, num_inc - corr]
     end
 
     def hint
-      @secret_code[rand(0...code_size)]
+      @secret_code.chars.sample
     end
 
     def status
@@ -79,7 +74,7 @@ module Codebreaker
     private
 
     def generate_code
-      (0...code_size).map { rand(1..6) }.join
+      Array.new(code_size) { rand(1..6) }.join
     end
   end
 end
