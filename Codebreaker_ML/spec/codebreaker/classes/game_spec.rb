@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Codebreaker
   RSpec.describe Game do
-    let(:game) { Game.new }
+    subject(:game) { Game.new }
 
     context '.new' do
       it 'generates secret code' do

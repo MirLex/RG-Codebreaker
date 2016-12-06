@@ -3,7 +3,7 @@ require 'pry'
 
 module Codebreaker
   RSpec.describe GameTerminal do
-    let(:game) { GameTerminal.new }
+    subject(:game) { GameTerminal.new }
 
     context '#text' do
       it 'puts game messages' do
