@@ -1,6 +1,3 @@
-# require './lib/classes/game'
-# require './lib/controllers/gameController'
-
 module Codebreaker
   class GameTerminal
     def initialize
@@ -69,9 +66,7 @@ module Codebreaker
     end
 
     def mark_guess(guess)
-      guess.first.times { print '+' }
-      guess.last.times { print '-' }
-      puts ''
+      puts '+' * guess.first + '-' * guess.last
     end
   end
 end
