@@ -4,27 +4,7 @@ require 'pry'
 module Codebreaker
   class Game
     attr_reader :code_size, :guess_history
-    TEXT = {
-      rules:      'GAME RULES:
-      The code-breaker then gets some number of chances to break the code.
-      In each turn, the code-breaker makes a guess of four numbers.
-      The code-maker then marks the guess with up to four + and - signs.
-      A + indicates an exact match: one of the numbers in the guess is
-      the same as one of the numbers in the secret code and in the same position.
-      A - indicates a number match: one of the numbers in the guess is
-      the same as one of the numbers in the secret code but in a different position.',
-      make_guess: 'Make guess:',
-      incorrect:  'Input Error',
-      hint:       'Enter "hint" for request a hint',
-      quit:       'Enter "quit" to exit the game',
-      quit?:      'Enter "yes" to exit the game',
-      restart:    'Enter "restart" to start a new round',
-      restart?:   'Enter "yes" to play again',
-      win:        'Congratulations, you win the game',
-      lose:       'Sorry you lose',
-      save:       'Enter "yes" to save game history',
-      initials:   'Enter your name'
-    }.freeze
+    TEXT = YAML.load_file(File.expand_path('lib/data/text.yaml'))
 
     def initialize(code_size = 4, number_of_turns = 15)
       @code_size = code_size

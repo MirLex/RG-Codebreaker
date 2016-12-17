@@ -22,7 +22,7 @@ module Codebreaker
     end
 
     def text(message)
-      puts Codebreaker::Game::TEXT[message]
+      puts Codebreaker::Game::TEXT[message.to_s]
     end
 
     def action(answer)
@@ -43,10 +43,9 @@ module Codebreaker
 
     def save_history
       text(:save)
-      if gets.chomp == 'yes'
+      return unless gets.chomp == 'yes'
         text(:initials)
         puts 'Game history save to: ' + @game.save_history(gets.chomp)
-      end
     end
 
     def game_over(game_result)
