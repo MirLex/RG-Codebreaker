@@ -3,7 +3,7 @@ require 'pry'
 
 module Codebreaker
   class Game
-    attr_reader :code_size, :guess_history
+    attr_reader :code_size, :guess_history, :number_of_turns
     TEXT = YAML.load_file(File.expand_path('lib/data/text.yaml'))
 
     def initialize(code_size = 4, number_of_turns = 15)
