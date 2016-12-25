@@ -12,7 +12,7 @@ module Codebreaker
         answer = gets.chomp
         action(answer)
 
-        if Codebreaker::GameController.validCode?(answer)
+        if Codebreaker::GameController.valid_code?(answer)
           mark_guess(@game.guess(answer))
           game_over(@game.status) unless @game.status.nil?
         else
